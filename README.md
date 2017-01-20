@@ -53,35 +53,39 @@ each environment:
 
 #### The production environment (`production.yaml` file)
 
-    version: "2.1"
-    services:
-        # Random app that needs an IMAP server at tcp://imap:143
-        app:
-            build: .
-            links:
-                - imap
-        # Production address to your real IMAP server
-        imap:
-            image: tecnativa/tcp-proxy
-            environment:
-                LISTEN: ":143"
-                TALK: "imap.gmail.com:993"
+```yaml
+version: "2.1"
+services:
+    # Random app that needs an IMAP server at tcp://imap:143
+    app:
+        build: .
+        links:
+            - imap
+    # Production address to your real IMAP server
+    imap:
+        image: tecnativa/tcp-proxy
+        environment:
+            LISTEN: ":143"
+            TALK: "imap.gmail.com:993"
+```
 
 #### The development environment (`development.yaml` file)
 
-    version: "2.1"
-    services:
-        # Same configuration as in production for your app
-        app:
-            build: .
-            links:
-                - imap
-        # Connect to a fake IMAP server
-        imap:
-            image: tecnativa/tcp-proxy
-            environment:
-                LISTEN: ":143"
-                TALK: "imap.mytestserver.example.com:143"
+```yaml
+version: "2.1"
+services:
+    # Same configuration as in production for your app
+    app:
+        build: .
+        links:
+            - imap
+    # Connect to a fake IMAP server
+    imap:
+        image: tecnativa/tcp-proxy
+        environment:
+            LISTEN: ":143"
+            TALK: "imap.mytestserver.example.com:143"
+```
 
 ## Feedback
 
