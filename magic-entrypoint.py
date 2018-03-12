@@ -17,10 +17,19 @@ TALKS = os.environ["TALK"].split()
 TEMPLATE = """
 backend talk_{index}
     server stupid_{index} {talk}
-
 frontend listen_{index}
     bind {listen}
     default_backend talk_{index}
+"""
+config = """
+global
+    log /dev/log local0
+defaults
+    log global
+    mode tcp
+    timeout client 10m
+    timeout connect 10s
+    timeout server 10m
 """
 
 if len(LISTENS) != len(TALKS):
@@ -47,15 +56,15 @@ for index, (listen, talk, pre_resolve) in enumerate(zip(LISTENS, TALKS,
         logging.info("Resolved %s to %s", server, ip)
 
     # Render template
-    result = TEMPLATE.format(
+    config += TEMPLATE.format(
         index=index,
         listen=listen,
         talk=f"{ip}:{port}",
     )
 
-    # Write template to haproxy's cfg file
-    with open("/usr/local/etc/haproxy/haproxy.cfg", "a") as cfg:
-        cfg.write(result)
+# Write template to haproxy's cfg file
+with open("/usr/local/etc/haproxy/haproxy.cfg", "w") as cfg:
+    cfg.write(config)
 
 logging.info("Magic ready, executing now: %s", " ".join(sys.argv[1:]))
 os.execv(sys.argv[1], sys.argv[1:])
