@@ -17,6 +17,7 @@ TALKS = os.environ["TALK"].split()
 TEMPLATE = """
 backend talk_{index}
     server stupid_{index} {talk}
+
 frontend listen_{index}
     bind {listen}
     default_backend talk_{index}
@@ -27,9 +28,12 @@ global
 defaults
     log global
     mode tcp
-    timeout client 10m
-    timeout connect 10s
-    timeout server 10m
+    timeout client 5s
+    timeout client-fin 5s
+    timeout connect 5s
+    timeout server 5s
+    timeout server-fin 5s
+    timeout tunnel 5s
 """
 
 if len(LISTENS) != len(TALKS):
