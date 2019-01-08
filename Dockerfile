@@ -1,4 +1,4 @@
-FROM haproxy:1.8-alpine
+FROM haproxy:1.9-alpine
 
 ENTRYPOINT ["/magic-entrypoint", "/docker-entrypoint.sh"]
 CMD ["haproxy", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]

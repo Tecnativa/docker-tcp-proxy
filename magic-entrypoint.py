@@ -24,7 +24,8 @@ frontend listen_{index}
 """
 config = """
 global
-    log /dev/log local0
+    log stdout format raw daemon
+
 defaults
     log global
     mode tcp
