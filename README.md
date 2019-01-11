@@ -65,6 +65,42 @@ required by [HAProxy][]'s [`server`][] directive.
 
 By default (`talk:100`), it talks to a host named `talk` in port 100 too.
 
+### `$TIMEOUT_CLIENT`
+
+Default: `5s`
+
+This variable sets the maximum inactivity time on the client side.
+
+### `$TIMEOUT_CLIENT_FIN`
+
+Default: `5s`
+
+This variable sets the inactivity timeout on the client side for half-closed connections.
+
+### `$TIMEOUT_CONNECT`
+
+Default: `5s`
+
+This variable sets the maximum time to wait for a connection attempt to a server to succeed.
+
+### `$TIMEOUT_SERVER`
+
+Default: `5s`
+
+This variable sets the maximum inactivity time on the server side.
+
+### `$TIMEOUT_SERVER_FIN`
+
+Default: `5s`
+
+This variable sets the inactivity timeout on the server side for half-closed connection.
+
+### `$TIMEOUT_TUNNEL`
+
+Default: `5s`
+
+This variable sets the maximum inactivity time on the client and server side for tunnels.
+
 ### Multi-proxy mode
 
 This image supports proxying multiple ports at once, but keep in mind
