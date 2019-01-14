@@ -42,13 +42,13 @@ and it must be written in the format used by the [`bind`][] directive.
 By default (`:100`), it listens in every connection at port 100 (port 100?
 that's stupid!... Yes, read the title :point_up::expressionless:).
 
-### `NAMESERVERS`
+#### `$NAMESERVERS`
 
 Default: `208.67.222.222 8.8.8.8 208.67.220.220 8.8.4.4` to use OpenDNS and Google DNS resolution servers by default.
 
 Only used when [pre-resolving](#pre-resolve) is enabled.
 
-### `PRE_RESOLVE`
+#### `$PRE_RESOLVE`
 
 Default: `0`
 
@@ -64,6 +64,42 @@ The target TCP server and port that the proxy will be talking to, in the format
 required by [HAProxy][]'s [`server`][] directive.
 
 By default (`talk:100`), it talks to a host named `talk` in port 100 too.
+
+#### `$TIMEOUT_CLIENT`
+
+Default: `5s`
+
+This variable sets the maximum inactivity time on the client side.
+
+#### `$TIMEOUT_CLIENT_FIN`
+
+Default: `5s`
+
+This variable sets the inactivity timeout on the client side for half-closed connections.
+
+#### `$TIMEOUT_CONNECT`
+
+Default: `5s`
+
+This variable sets the maximum time to wait for a connection attempt to a server to succeed.
+
+#### `$TIMEOUT_SERVER`
+
+Default: `5s`
+
+This variable sets the maximum inactivity time on the server side.
+
+#### `$TIMEOUT_SERVER_FIN`
+
+Default: `5s`
+
+This variable sets the inactivity timeout on the server side for half-closed connection.
+
+#### `$TIMEOUT_TUNNEL`
+
+Default: `5s`
+
+This variable sets the maximum inactivity time on the client and server side for tunnels.
 
 ### Multi-proxy mode
 

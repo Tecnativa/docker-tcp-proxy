@@ -29,12 +29,12 @@ global
 defaults
     log global
     mode tcp
-    timeout client 5s
-    timeout client-fin 5s
-    timeout connect 5s
-    timeout server 5s
-    timeout server-fin 5s
-    timeout tunnel 5s
+    timeout client env(TIMEOUT_CLIENT)
+    timeout client-fin env(TIMEOUT_CLIENT_FIN)
+    timeout connect env(TIMEOUT_CONNECT)
+    timeout server env(TIMEOUT_SERVER)
+    timeout server-fin env(TIMEOUT_SERVER_FIN)
+    timeout tunnel env(TIMEOUT_TUNNEL)
 """
 
 if len(LISTENS) != len(TALKS):
