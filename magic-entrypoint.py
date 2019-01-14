@@ -11,12 +11,6 @@ logging.root.setLevel(logging.INFO)
 
 LISTENS            = os.environ["LISTEN"].split()
 NAMESERVERS        = os.environ["NAMESERVERS"].split()
-TIMEOUT_CLIENT     = os.environ["TIMEOUT_CLIENT"]
-TIMEOUT_CLIENT_FIN = os.environ["TIMEOUT_CLIENT_FIN"]
-TIMEOUT_CONNECT    = os.environ["TIMEOUT_CONNECT"]
-TIMEOUT_SERVER     = os.environ["TIMEOUT_SERVER"]
-TIMEOUT_SERVER_FIN = os.environ["TIMEOUT_SERVER_FIN"]
-TIMEOUT_TUNNEL     = os.environ["TIMEOUT_TUNNEL"]
 
 resolver = Resolver()
 resolver.nameservers = NAMESERVERS
@@ -29,19 +23,19 @@ frontend listen_{index}
     bind {listen}
     default_backend talk_{index}
 """
-config = f"""
+config = """
 global
     log stdout format raw daemon
 
 defaults
     log global
     mode tcp
-    timeout client {TIMEOUT_CLIENT}
-    timeout client-fin {TIMEOUT_CLIENT_FIN}
-    timeout connect {TIMEOUT_CONNECT}
-    timeout server {TIMEOUT_SERVER}
-    timeout server-fin {TIMEOUT_SERVER_FIN}
-    timeout tunnel {TIMEOUT_TUNNEL}
+    timeout client env(TIMEOUT_CLIENT)
+    timeout client-fin env(TIMEOUT_CLIENT_FIN)
+    timeout connect env(TIMEOUT_CONNECT)
+    timeout server env(TIMEOUT_SERVER)
+    timeout server-fin env(TIMEOUT_SERVER_FIN)
+    timeout tunnel env(TIMEOUT_TUNNEL)
 """
 
 if len(LISTENS) != len(TALKS):
