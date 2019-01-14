@@ -9,9 +9,8 @@ from dns.resolver import Resolver
 
 logging.root.setLevel(logging.INFO)
 
-LISTENS            = os.environ["LISTEN"].split()
-NAMESERVERS        = os.environ["NAMESERVERS"].split()
-
+LISTENS = os.environ["LISTEN"].split()
+NAMESERVERS = os.environ["NAMESERVERS"].split()
 resolver = Resolver()
 resolver.nameservers = NAMESERVERS
 TALKS = os.environ["TALK"].split()
