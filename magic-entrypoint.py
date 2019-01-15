@@ -29,12 +29,12 @@ global
 defaults
     log global
     mode tcp
-    timeout client env(TIMEOUT_CLIENT)
-    timeout client-fin env(TIMEOUT_CLIENT_FIN)
-    timeout connect env(TIMEOUT_CONNECT)
-    timeout server env(TIMEOUT_SERVER)
-    timeout server-fin env(TIMEOUT_SERVER_FIN)
-    timeout tunnel env(TIMEOUT_TUNNEL)
+    timeout client "$TIMEOUT_CLIENT"
+    timeout client-fin "$TIMEOUT_CLIENT_FIN"
+    timeout connect "$TIMEOUT_CONNECT"
+    timeout server "$TIMEOUT_SERVER"
+    timeout server-fin "$TIMEOUT_SERVER_FIN"
+    timeout tunnel "$TIMEOUT_TUNNEL"
 """
 
 if len(LISTENS) != len(TALKS):
